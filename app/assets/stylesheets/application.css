@@ -21,5 +21,8 @@
   grid-template-columns: 1fr 1fr;
 }
 .left-side {
-  color: blue ;
+  background-color: #83CCF4 ;
+}
+.right-side {
+  background-color: #F48384 ;
 }
