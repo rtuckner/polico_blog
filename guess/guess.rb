@@ -1,3 +1,22 @@
+#
+# @param secret - the secret number being guessed
+# @param guess -  the user's guess
+# @return - the message that is displayed to the user
+#
+def evaluate_guess(secret, guess)
+  case (secret-guess).abs
+  when 1
+    s = "real hot"
+  when 2
+    s = "regular hot"
+  when 3
+    s = "luke warm"
+  else
+    s = "cold"
+  end
+  "you're #{s}"
+end
+
 def run_game
   secret = rand(10)
   #secret = 1
@@ -16,27 +35,8 @@ def run_game
       end
       break
     else
-      if (secret-guess).abs == 1
-        puts "you're real hot"
-      elsif (secret-guess).abs == 2
-        puts "you're regular hot"
-      elsif (secret-guess).abs == 3
-        puts "you're luke warm"
-      else
-        puts "you're cold"
-      end
+      puts evaluate_guess(secret, guess)
       secret = secret + 1 - rand(3)
     end
-  end
-end
-
-# --------- Main Program -----------------
-loop do
-  run_game
-
-  puts "play again?"
-  answer = gets
-  if answer =~ /^n/i
-    break
   end
 end
