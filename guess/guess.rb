@@ -17,6 +17,14 @@ def evaluate_guess(secret, guess)
   "you're #{s}"
 end
 
+def counts_guesses(num_guesses)
+  if num_guesses == 1
+    return "you got it in one guess"
+  else
+    return "you got it in #{num_guesses} guesses"
+  end
+end
+
 def run_game
   secret = rand(10)
   #secret = 1
@@ -28,11 +36,7 @@ def run_game
     num_guesses = num_guesses + 1
 
     if guess == secret
-      if num_guesses == 1
-        puts "you got it in one guess"
-      else
-        puts "you got it in #{num_guesses} guesses"
-      end
+      puts(count_guesses(num_guesses))
       break
     else
       puts evaluate_guess(secret, guess)
