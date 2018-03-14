@@ -25,5 +25,25 @@ describe "#count_guesses" do
   it "has many many guesses" do
     expect(counts_guesses(2000)).to eq("you got it in 2000 guesses")
   end
+end
 
+describe "#change_secret" do
+  it "doesn't change secret even though guess is wrong" do
+    expect(change_secret(1,2,1, rand_func: ->{ 1 })).to eq([false, 2])
+  end
+  it "reduces secret by one because guess is wrong" do
+    expect(change_secret(0,1,1, rand_func: ->{ 0 })).to eq([false, 2])
+  end
+  it "reduces secret by four because guess is wrong" do
+    expect(change_secret(9,10,1, rand_func: ->{ 5 })).to eq([false, 6])
+  end
+  it "secret doesn't change because it's already 1" do
+    expect(change_secret(3,1,1, rand_func: ->{ 2 })).to eq([false, 1])
+  end
+  it "secret changes to ten to stay within the bounds" do
+    expect(change_secret(4,10,1, rand_func: ->{ 0 })).to eq([false, 10])
+  end
+  it "secret changes to one to stay within the bounds" do
+    expect(change_secret(5,2,1, rand_func: ->{ 2 })).to eq([false, 1])
+  end
 end
