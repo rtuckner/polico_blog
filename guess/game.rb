@@ -2,7 +2,7 @@ require_relative "guess"
 
 # --------- Main Program -----------------
 loop do
-  run_game
+  GuessingGame.new.run_game
 
   puts "play again?"
   answer = gets
